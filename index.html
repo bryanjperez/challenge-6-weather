@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/stylesheet.css" />
+<title>Weather Dashboard</title>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <h1 class="heading text-light text-center">Weather Dashboard</h1>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content container-fluid">
+        <div class="row">
+            <section class="search-container-style card col-3">
+                <!-- SEARCH FORM -->
+                <form class="p-2">
+                    <label id="search-label" for="search-input">Search for a City:
+                    </label>
+                    <input type="text" id="search-field" name="search-input" class="form-control text-input" />
+                    <button type="submit" class="btn btn-block">Search</button>
+                </form>
+
+                <!-- SAVED SEARCH AREA-->
+                <div class="card-body" id="result-history"></div>
+            </section>
+
+            <!-- CURRENT FORECAST -->
+            <section id="current-wrapper" class="current col-9 card">
+                <div id="current-results" class="current-display border-secondary"></div>
+            </section>
+
+            <!-- FIVE DAY FORECAST -->
+            <section>
+                <!-- will need to make line 50 div a card, line 51 div a card-body and javascript created div a card-body-->
+                <div id="forecast-wrapper" class="forecast-wrap card">
+                    <div id="forecast-result" class="forecast-class card-body border-secondary">
+                        <!-- append 5 day forecasted weather here -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="assets/script.js"></script>
+</body>
+
+</html>
