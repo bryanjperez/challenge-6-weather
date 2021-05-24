@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="./assets/stylesheet.css" />
-<title>Weather Dashboard</title>
+    <link rel="stylesheet" href="assets/stylesheet.css" />
+    <title>Weather Dashboard</title>
 </head>
 
 <body>
@@ -19,33 +19,42 @@
     <!-- MAIN CONTENT -->
     <main class="main-content container-fluid">
         <div class="row">
-            <section class="search-container-style card col-3">
-                <!-- SEARCH FORM -->
-                <form class="p-2">
-                    <label id="search-label" for="search-input">Search for a City:
-                    </label>
-                    <input type="text" id="search-field" name="search-input" class="form-control text-input" />
-                    <button type="submit" class="btn btn-block">Search</button>
-                </form>
+            <div class="col-3">
+                <section class="search-container-style card">
+                    <!-- SEARCH FORM -->
+                    <form id="form-submit" class="p-2">
+                        <label class="search-label" for="search-label">Search for a City:
+                        </label>
+                        <input type="text" id="search-field" name="search-input" class="form-control text-input" placeholder=" ex. New York" />
+                        <button type="submit" class="btn btn-block">Search</button>
+                    </form>
 
-                <!-- SAVED SEARCH AREA-->
-                <div class="card-body" id="result-history"></div>
-            </section>
-
-            <!-- CURRENT FORECAST -->
-            <section id="current-wrapper" class="current col-9 card">
-                <div id="current-results" class="current-display border-secondary"></div>
-            </section>
-
-            <!-- FIVE DAY FORECAST -->
-            <section>
-                <!-- will need to make line 50 div a card, line 51 div a card-body and javascript created div a card-body-->
-                <div id="forecast-wrapper" class="forecast-wrap card">
-                    <div id="forecast-result" class="forecast-class card-body border-secondary">
-                        <!-- append 5 day forecasted weather here -->
+                    <!-- SAVED SEARCH AREA-->
+                    <div class="card-body" id="result-history"></div>
+                </section>
+            </div>
+            <div class="col">
+                <!-- CURRENT FORECAST -->
+                <section id="current-wrapper" class="current card">
+                    <div id="current-results" class="current-display border-secondary">
+                        <h1 id="cityName">Current Day</h1>
                     </div>
-                </div>
-            </section>
+                    <p id="cityName"></p>
+                    <p id="cityWeather"></p>
+                    <p id="cityTemp"></p>
+                </section>
+
+                <!-- FIVE DAY FORECAST -->
+                <section>
+                    <!-- will need to make line 50 div a card, line 51 div a card-body and javascript created div a card-body-->
+                    <div id="forecast-wrapper" class="forecast-wrap">
+                        <div id="forecast-result" class="forecast-class border-secondary">
+                            <h2>5-Day Forecast</h2>
+                            <!-- append 5 day forecasted weather here -->
+                        </div>
+                    </div>
+                </section>
+            </div>
         </div>
     </main>
 
