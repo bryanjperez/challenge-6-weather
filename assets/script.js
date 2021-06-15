@@ -5,7 +5,7 @@ var time = moment().format('hh:mm:ss');
 
 //  create weather function to pull data from API
 var weather = function (city) {
-    var weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" + "&APPID=72dfca8eff87bd67cf6e72b3fd4bf66f";
+    var weatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" + "&APPID=72dfca8eff87bd67cf6e72b3fd4bf66f";
     $.ajax({
         url: weatherURL,
         method: "GET"
@@ -43,7 +43,7 @@ var weather = function (city) {
 
 // create function for five day forcecast
 var fiveDayForecast = function (city) {
-    var fiveDayForecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial" + "&APPID=72dfca8eff87bd67cf6e72b3fd4bf66f";
+    var fiveDayForecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial" + "&APPID=72dfca8eff87bd67cf6e72b3fd4bf66f";
 
     $.ajax({
         url: fiveDayForecastURL,
