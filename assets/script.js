@@ -1,57 +1,103 @@
-// var searchButton = $('.btn');
+var cityEl = document.querySelector("#form-submit");
+var citySearch = document.querySelector("#search-input");
+var date = moment().format('MMM Do, YYYY');
+var time = moment().format('hh:mm:ss');
 
-// searchButton.on('click', function () {
-// var searchBox = $('#search-field')
+//  create weather function to pull data from API
+var weather = function (city) {
+    var weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" + "&APPID=72dfca8eff87bd67cf6e72b3fd4bf66f";
+    $.ajax({
+        url: weatherURL,
+        method: "GET"
+    }).then(function (response) {
+        var city = $("#results");
+        var day2 = $("#results2");
+        var temperature = $("#temperature");
+        var wind = $("#wind");
+        var humidity = $("#humidity");
 
-// var searchText = searchBox.val();
-// event.preventDefault();
-// console.log(searchText)
+        // empty divs prior to returning function call
+        city.empty();
+        day2.empty();
+        temperature.empty();
+        wind.empty();
+        humidity.empty();
 
+        // create variables for JSON responses
+        var day = (response.name);
+        var temp = (response.main.temp);
+        // concatenate string 'MPH' to wind
+        var windMPH = (response.wind.speed + " MPH");
+        // concatenate string '%' to humidity
+        var humidityPercent = (response.main.humidity + " %");
 
-//  var APIkey = '843fa40ad68a96668befb0da86d9b44b'
+        // Push data to relevant DIV in HTML
+        $("#results").prepend(day + "")
+        $("#results2").append(date + " " + time);
+        $("#temperature").append(temp);
+        $("#wind").append(windMPH);
+        $("#humidity").append(humidityPercent);
 
-
-// var myURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchText + "&units=imperial&appid=" + APIkey
-
-// fetch(myURL)
-// .then((res) => {
-// return res.json()
-// })
-// .then((data) => {
-// console.log(data);
-
-// var cityName = $('#city-name');
-// cityName.text(data.name)
-
-// var cityTemp = $('#city-temp');
-// cityTemp.text(data.main.temp)
-
-// })
-
-
-// })
-// var searchBox = $('#search-field');
-// var searchText = searchBox.val();
-// var icon = "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png";
-
-var APIkey = '843fa40ad68a96668befb0da86d9b44b';
-var searchButton = $('.btn');
-var searchBox = $('#search-field');
-var searchInput = searchBox.val();
-
-
-
-
-$.getJSON(
-    "https://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&units=imperial" + APIkey,
-    function (data) {
-        // var searchButton = $('.btn');
-        // var searchBox = $('.textInput');
-        // var searchInput = searchBox.val();
-        var temp = Math.floor(data.main.temp);
-        var weather = data.weather[0].main;
-        var icon = "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png";
     })
+};
+
+// create function for five day forcecast
+var fiveDayForecast = function (city) {
+    var fiveDayForecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial" + "&APPID=72dfca8eff87bd67cf6e72b3fd4bf66f";
+
+    $.ajax({
+        url: fiveDayForecastURL,
+        method: "GET"
+    }).then(function (response) {
+        console.log(response);
+
+        var fiveDayDiv = $("#forecast");
+        var forecastDay = response.list;
+
+        // empty div before running function each time
+        fiveDayDiv.empty();
+
+        for (let i = 4; index < forecastDay.length; i += 8) {
+            var fiveDayView = $("<div>").addclass("card");
+            var fiveTime = new Date(response.list[i].dt * 1000);
+
+            fiveTime = fiveTime.toLocaleDateString("en-US");
+            fiveDayView.html("<p>" + fiveTime + "<p>" + `<img src='https://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png'>` + "<p>" + "Temperature: " + response.list[i].main.temp + "</p>" + "<p>" + "Humidity: " + response.list[i].main.humidity + "%" + "</p>" + "<p>" + "Wind: " + response.list[i].wind.speed + " MPH" + "</p>")
+
+            fiveDayDiv.append(fiveDayView);
+        }
+    });
+}
+var formHandler = function (event) {
+    event.preventDefault();
+
+    var cityName = citySearch.value.trim();
+
+    if (cityName) {
+        weather(cityName);
+        fiveDayForecast(cityName);
+        button(cityName);
+        citySearch.value = "";
+    } else {
+        alert("Please enter a city");
+    }
+};
+
+var button = function (cityName) {
+    if (cityName) {
+        $('#result-history').append(
+            $(document.createElement('button')).prop({
+                type: 'button',
+                innerHTML: cityName,
+                class: 'btn-secondary btn btn-block',
+                id: 'testing'
+            })
+        );
+    }
+}
+
+cityEl.addEventListener("submit", formHandler);
+weather();
 
 
 // ERROR MESSAGES APPEAR TO BE BECAUSE OF THE TOKEN KEY. 401 ERROR = 
