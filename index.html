@@ -19,53 +19,55 @@
     <!-- MAIN CONTENT -->
     <main class="main-content container-fluid">
         <div class="row m-1">
-            <div class="col-3 border-bottom border-dark">
+            <div class="col-3">
                 <section class="search-container-style card">
                     <!-- SEARCH FORM -->
                     <form id="form-submit" class="p-2">
                         <label class="search-label" for="search-label">Search for a City:
                         </label>
-                        <input type="text" id="search-field" name="search-input" class="form-control text-input" placeholder=" ex. New York" />
+                        <input type="text" id="search-input" name="search-input" class="w-100"
+                            placeholder=" ex. New York" />
                         <button type="submit" class="btn btn-block">Search</button>
                     </form>
 
                     <!-- SAVED SEARCH AREA-->
                     <div class="card-body" id="result-history"></div>
             </div>
-                  <!-- CURRENT FORECAST -->
-                    <div class="col-8 border border-dark ml-3">
-                    <div id="current-results" class="current-display border-secondary">
-                        <h1 id="cityName">Current Day</h1> 
-                <div id="current-weather" class="col-8 border border-dark ml-3">
-                <h3 id="city"></h3>
-                    <span>Temp:</span> <span id="temp"></span> <br>
-                    <span>Wind:</span> <span id="wind"></span> <br>
-                    <span>Humidity:</span> <span id="humidity"></span> <br>
-                    <span>UV Index:</span> <span id="uv"></span>
-                  </div>
-                   <div class="row m-1">
-        <!-- This is where previously searched for cities will be contained  -->
-        <div class="col-3 text-center mt-2" id="cities">
-        </div>
+            <!-- CURRENT FORECAST -->
+            <div class="col-8 ml-3">
+                <div id="current-results" class="current-display border-secondary">
+                    <!-- <h1>Current Day</h1> -->
+                    <div class="cityName"></div>
+                    <div id="current-weather" class="col-8 border border-dark ml-3">
+                        <div id="results"></div>
+                        <div id="results2"></div>
+                        <h3 id="city"></h3>
+                        <span>Temp:</span> <span id="temperature"></span> <br>
+                        <span>Wind:</span> <span id="wind"></span> <br>
+                        <span>Humidity:</span> <span id="humidity"></span> <br>
+                        <!-- <span>UV Index:</span> <span id="uv"></span> -->
+                    </div>
+                </div>
+                <!-- SAVED SEARCH AREA-->
+                <div class="row m-1">
+                    <div class="card-body" id="result-history">
+                    </div>
+                    <div id="five-day-forecast" class="col-9">
+                        <h3>5-Day Forecast:</h3>
 
-                <!-- FIVE DAY FORECAST -->
-                  <div id="5-Day" class="col-9">
-                    <h3>5-Day Forecast:</h3>
+                        <div id="forecast" class="row">
 
-                     <div id="forecast" class="row">
-            
-                     </div>
-                     </div>
-                            <!-- append 5 day forecasted weather here -->
                         </div>
                     </div>
+                </div>
+
             </div>
         </div>
     </main>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="assets/script.js"></script>
+    <script src="./assets/script.js"></script>
 </body>
 
 </html>
